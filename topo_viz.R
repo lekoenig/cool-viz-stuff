@@ -129,12 +129,12 @@ ggplot() + geom_raster(data = try2_df , aes(x = x, y = y,fill=elev)) +
 ####################################################
 
 ## How 'bout the White Mountains/Hubbard Brook area? Pawtuckaway?
-hb <- data.frame(lat = 43.9503, lng =-71.775)
+hb <- data.frame(lat = 43.9503, lng =-71.7415)
 mtw <- data.frame(lat=44.2702778,lng=-71.3033333) # mt washington
 pwt <- data.frame(lat=43.10194,lng= -71.18111) # pawtuckaway
 # convert to sf object and pad with bbox:
 pt_sf <- st_as_sf(pwt, coords = c("lng","lat"), crs = 4326)
-pt_bbox <- set_bbox_side_length(pt_sf, 9, "km")
+pt_bbox <- set_bbox_side_length(pt_sf, 11, "km")
 
 # download 5 m tiles:
 with_progress(
@@ -171,9 +171,7 @@ ggplot(data = contour_lines)+
         plot.title = element_text(color="white"),
         legend.position = "none",
         legend.text = element_text(color="white"),
-        title = element_text(size=7.5))+
+        title = element_text(size=5.5))+
   coord_sf(crs = 4326)+
   scale_fill_scico(palette="imola", direction = 1)+
   ggtitle("   Pawtuckaway State Park, NH")
-
-
